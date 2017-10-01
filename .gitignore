@@ -259,3 +259,13 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/YobaMan/sfml-window-d-2.dll
+/YobaMan/sfml-window-2.dll
+/YobaMan/sfml-system-d-2.dll
+/YobaMan/sfml-system-2.dll
+/YobaMan/sfml-network-d-2.dll
+/YobaMan/sfml-network-2.dll
+/YobaMan/sfml-graphics-d-2.dll
+/YobaMan/sfml-graphics-2.dll
+/YobaMan/sfml-audio-d-2.dll
+/YobaMan/sfml-audio-2.dll
