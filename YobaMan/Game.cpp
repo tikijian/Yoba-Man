@@ -1,28 +1,19 @@
 #include "stdafx.h"
 #include "Game.h"
+#include "AssetManager.h"
+#include "Tile.h"
 
 using namespace sf;
 
 Game::Game(RenderWindow &wnd) :
 	window(wnd)
 {
+	AssetManager &aManager = AssetManager::Instance();
 
-	if(! playerTex.loadFromFile("graphics/yoba-sprite.png")) throw FileLoadError();
-	if(! wallsTex.loadFromFile("graphics/walls.png")) throw FileLoadError();
-
-	player.setTexture(playerTex);
+	player.setTexture(aManager.get("yoba-sprite.png"));
 	player.setTextureRect(IntRect(0, 0, 700, 700));
 	player.setScale(0.08f, 0.08f);
-	player.setPosition(100.0f, 100.0f);
-
-	leftWall.setTexture(wallsTex);
-	leftWall.setTextureRect(IntRect(0, 0, 64, 64));
-	leftWall.setPosition(100.0f, 100.0f);
-	leftWall.setScale(2.0f, 2.0f);
-	rightWall.setTexture(wallsTex);
-	rightWall.setTextureRect(IntRect(192, 0, 64, 64));
-	rightWall.setPosition(100.0f, 100.0f);
-
+	player.setPosition(302.0f, 102.0f);
 }
 
 Game::~Game()
@@ -33,6 +24,11 @@ Game::~Game()
 bool Game::run()
 {
 	Clock clock;
+	Tile emptyWall;
+	Tile wall(true, true, true, true);
+
+	emptyWall.initialize(100.0f, 100.0f);
+	wall.initialize(300.0f, 100.0f);
 
 	while (window.isOpen())
 	{
@@ -69,8 +65,8 @@ bool Game::run()
 		window.clear(sf::Color::Black);
 
 		window.draw(player);
-		window.draw(leftWall);
-		window.draw(rightWall);
+		emptyWall.draw(window);
+		wall.draw(window);
 
 		window.display();
 		//-----------
